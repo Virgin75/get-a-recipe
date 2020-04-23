@@ -1,9 +1,11 @@
 from flask import current_app as app
+from . import db
+from .data import getRecipe
 
 @app.route("/")
 def hello():
     return "Hello World!"
 
-@app.route("/test")
-def test():
-    return "Hello test!"
+@app.route("/banana")
+def getit():
+    return getRecipe("banana")
