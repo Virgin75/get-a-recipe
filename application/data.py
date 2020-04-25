@@ -1,7 +1,9 @@
 import json
 from . import db
+from random import randint
 
-def getRecipe(ingredient):
+
+def getRecipes(*argv):
 
     myList = []
 
@@ -9,7 +11,15 @@ def getRecipe(ingredient):
         ingredients = db[recipe].get('ingredients')
 
         if ingredients is not None:
-            if ingredient in str(ingredients):
-                myList.append(db[recipe].get('title'))
 
-    return str(myList)
+            if all(c in str(ingredients) for c in argv):
+                
+                myList.append(db[recipe])
+
+    return myList
+
+def getRandom():
+
+    randomIndex = list(db)[randint(0, len(db))]
+
+    return db[randomIndex]
