@@ -2,6 +2,7 @@ from flask import Flask
 import json
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_cors import CORS
 
 with open("data1.json", "r") as file:
     db = json.load(file)
@@ -15,6 +16,7 @@ def create_app():
 
     #Initialize plugin
     limiter.init_app(app)
+    CORS(app)
 
     with app.app_context():
         # Include our Routes
